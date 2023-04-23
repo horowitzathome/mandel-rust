@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mandel-ingress
+  annotations:
+    # If the class annotation is not specified it defaults to "gce".
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /mandel-java
+        pathType: Prefix
+        backend:
+          service:
+            name: -mandel-java-service
+            port:
+              number: 8080
+      - path: /mandel-rust
+        pathType: Prefix
+        backend:
+          service:
+            name: mandel-rust-service
+            port:
+              number: 8080

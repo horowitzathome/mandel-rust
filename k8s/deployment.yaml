@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mandel-rust-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mandel-rust-app
+  template:
+    metadata:
+      labels:
+        app: mandel-rust-app
+    spec:
+      containers:
+      - name: mandel-rust-container
+        image: horowitzathome/mandel-rust:latest-x86_64-unknown-linux-gnu
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"

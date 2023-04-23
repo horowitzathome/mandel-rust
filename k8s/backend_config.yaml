@@ -1,0 +1,10 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: mandel-rust-backend-config
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 8080
+    type: HTTP
+    requestPath: /mandel-rust/actuator/health
