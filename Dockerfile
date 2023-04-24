@@ -18,8 +18,8 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,id=${TARGETPLATFORM} --m
     cargo strip && \
     mv /root/target/${TARGET}/release/${IMAGE_NAME} /root
 
-#FROM gcr.io/distroless/static:nonroot
-FROM gcr.io/distroless/base:debug
+FROM gcr.io/distroless/static:nonroot
+#FROM gcr.io/distroless/base:debug
 
 ENV IMAGE_NAME=mandel-rust
 
