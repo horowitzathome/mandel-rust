@@ -33,7 +33,7 @@ COPY --from=builder /bin/dash /bin/dash
 COPY --from=builder /bin/bash /bin/bash
 COPY --from=builder /bin/ls /bin/ls
 
-RUN /bin/ls -alF /bin
+# RUN /bin/ls -alF /bin
 
 # Copy our build
 COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
