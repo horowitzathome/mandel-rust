@@ -38,5 +38,5 @@ COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
 
 EXPOSE 8080
 
-ENTRYPOINT ["/${IMAGE_NAME}/${IMAGE_NAME}"]
+ENTRYPOINT ["/mandel-rust/mandel-rust"]
 #ENTRYPOINT ["/mandel-rust/sh"]
