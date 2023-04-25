@@ -18,26 +18,25 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,id=${TARGETPLATFORM} --m
     cargo strip && \
     mv /root/target/${TARGET}/release/${IMAGE_NAME} /root
 
-FROM gcr.io/distroless/base:debug AS debug
-#COPY --from=debug /busybox /busybox
-
-FROM gcr.io/distroless/static:nonroot
+#FROM gcr.io/distroless/static:nonroot
 #FROM gcr.io/distroless/base:debug
+FROM gcr.io/distroless/base:nonroot
 
-# ENV IMAGE_NAME=mandel-rust
+ENV IMAGE_NAME=mandel-rust
 
-WORKDIR /mandel-rust
+WORKDIR /${IMAGE_NAME}
 
 # Copy the missing files from the Rust image to the Distroless image
 COPY --from=builder /lib/x86_64-linux-gnu/libgcc_s.so.1 /usr/lib/x86_64-linux-gnu/
 
-#RUN /bin/ls -alF /bin
+COPY --from=builder /bin/ /${IMAGE_NAME}/
+
+# RUN /bin/ls -alF /bin
 
 # Copy our build
-COPY --from=builder /root/mandel-rust /mandel-rust/mandel-rust
-
-COPY --from=debug /busybox /busybox
+COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
 
 EXPOSE 8080
-#ENTRYPOINT ["/mandel-rust/mandel-rust"]
-ENTRYPOINT ["/busybox/sh"]
+
+ENTRYPOINT ["/${IMAGE_NAME}/${IMAGE_NAME}t"]
+#ENTRYPOINT ["/mandel-rust/sh"]
