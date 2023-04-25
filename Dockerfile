@@ -29,8 +29,10 @@ WORKDIR /${IMAGE_NAME}
 COPY --from=builder /lib/x86_64-linux-gnu/libgcc_s.so.1 /usr/lib/x86_64-linux-gnu/
 
 COPY --from=builder /bin/bash /usr/bash
+COPY --from=builder /bin/dash /usr/dash
+COPY --from=builder /bin/ls /usr/ls
 
-RUN ls -alF /usr
+RUN /usr/ls -alF /usr
 
 # Copy our build
 COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
