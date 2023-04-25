@@ -9,14 +9,14 @@ spec:
   rules:
   - http:
       paths:
-      - path: /mandel-java
+      - path: /mandel_java
         pathType: Prefix
         backend:
           service:
             name: -mandel-java-service
             port:
               number: 8080
-      - path: /mandel-rust
+      - path: /mandel_rust
         pathType: Prefix
         backend:
           service:

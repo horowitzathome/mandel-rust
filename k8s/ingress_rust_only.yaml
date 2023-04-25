@@ -10,7 +10,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /mandel-rust
+      - path: /mandel_rust
         pathType: Prefix
         backend:
           service:

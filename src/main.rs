@@ -45,7 +45,7 @@ fn create_router() -> Router {
         // Reminder: routes added *after* TraceLayer are not subject to its logging behavior
         .route("/actuator/health", routing::get(listen::health));
 
-    Router::new().nest("/mandel-rust", routers)
+    Router::new().nest("/mandel_rust", routers)
 }
 
 fn register_tracing() {
