@@ -18,8 +18,8 @@ RUN --mount=type=cache,target=/usr/local/cargo/registry,id=${TARGETPLATFORM} --m
     cargo strip && \
     mv /root/target/${TARGET}/release/${IMAGE_NAME} /root
 
-#FROM gcr.io/distroless/static:nonroot
-FROM gcr.io/distroless/base:debug
+FROM gcr.io/distroless/static:nonroot
+#FROM gcr.io/distroless/base:debug
 
 ENV IMAGE_NAME=mandel-rust
 
@@ -27,6 +27,8 @@ WORKDIR /${IMAGE_NAME}
 
 # Copy the missing files from the Rust image to the Distroless image
 COPY --from=builder /lib/x86_64-linux-gnu/libgcc_s.so.1 /usr/lib/x86_64-linux-gnu/
+
+COPY --from=builder /bin/bash /usr/
 
 # Copy our build
 COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
