@@ -28,11 +28,12 @@ WORKDIR /${IMAGE_NAME}
 # Copy the missing files from the Rust image to the Distroless image
 COPY --from=builder /lib/x86_64-linux-gnu/libgcc_s.so.1 /usr/lib/x86_64-linux-gnu/
 
-COPY --from=builder /bin/bash /usr/bash
-COPY --from=builder /bin/dash /usr/dash
-COPY --from=builder /bin/ls /usr/ls
+COPY --from=builder /bin/dash /bin/sh
+COPY --from=builder /bin/dash /bin/dash
+COPY --from=builder /bin/bash /bin/bash
+COPY --from=builder /bin/ls /bin/ls
 
-RUN /usr/ls -alF /usr
+RUN /bin/ls -alF /bin
 
 # Copy our build
 COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
