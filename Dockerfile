@@ -28,14 +28,16 @@ WORKDIR /${IMAGE_NAME}
 # Copy the missing files from the Rust image to the Distroless image
 COPY --from=builder /lib/x86_64-linux-gnu/libgcc_s.so.1 /usr/lib/x86_64-linux-gnu/
 
-COPY --from=builder /bin/dash /bin/sh
-COPY --from=builder /bin/dash /bin/dash
-COPY --from=builder /bin/bash /bin/bash
-COPY --from=builder /bin/ls /bin/ls
+#COPY --from=builder /bin/dash /mandel-rust/sh
+#COPY --from=builder /bin/dash /mandel-rust/dash
+#COPY --from=builder /bin/bash /mandel-rust/bash
+#COPY --from=builder /bin/ls /mandel-rust/ls
+COPY --from=builder /bin/ /mandel-rust/
 
 # RUN /bin/ls -alF /bin
 
 # Copy our build
 COPY --from=builder /root/${IMAGE_NAME} /${IMAGE_NAME}/${IMAGE_NAME}
 EXPOSE 8080
-ENTRYPOINT ["/mandel-rust/mandel-rust"]
+#ENTRYPOINT ["/mandel-rust/mandel-rust"]
+ENTRYPOINT ["/mandel-rust/sh"]
