@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mandel-rust-container
-        image: horowitzathome/mandel-rust:latest-x86_64-unknown-linux-gnu
+        image: horowitzathome/mandel-rust:v0.1.16-x86_64-unknown-linux-gnu
         ports:
         - containerPort: 8080
         env:
@@ -22,8 +22,8 @@ spec:
           value: "8080"
         resources:
           requests:
-            cpu: 50m
+            cpu: 256m
             memory: 256Mi
           limits:
-            cpu: 100m
+            cpu: 500m
             memory: 512Mi  

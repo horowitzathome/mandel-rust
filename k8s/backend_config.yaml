@@ -7,4 +7,4 @@ spec:
     checkIntervalSec: 30
     port: 8080
     type: HTTP
-    requestPath: /mandel-rust/actuator/health
+    requestPath: /actuator/health

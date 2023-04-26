@@ -17,7 +17,6 @@
   - kubectl apply -f ingress_rust_only.yaml
 - If Rust and Java
   - kubectl apply -f ingress.yaml
-- kubectl apply -f ingress_rust_only.yaml
 - kubectl get ingress
 
 ### Test 
