@@ -6,8 +6,8 @@ pub struct MandelSet {
 }
 
 pub fn mandel(max_iter: u32) -> MandelSet {
-    let width = 80;
-    let height = 40;
+    let width = 80 * 100;
+    let height = 40 * 100;
     let max_iter = max_iter; // 256 or 1000000 ...
     let x_min = -2.0;
     let x_max = 1.0;

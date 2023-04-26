@@ -1,25 +1,26 @@
 use tracing::info;
 
-const WIDTH: i32 = 80;
-const HEIGHT: i32 = 40;
+//const WIDTH: i32 = 80*100;
+//const HEIGHT: i32 = 40*100;
 const X_MIN: f64 = -2.0;
 const X_MAX: f64 = 1.0;
 const Y_MIN: f64 = -1.5;
 const Y_MAX: f64 = 1.5;
-const X_STEP: f64 = (X_MAX - X_MIN) / WIDTH as f64;
-const Y_STEP: f64 = (Y_MAX - Y_MIN) / HEIGHT as f64;
 
 #[derive(serde::Deserialize, serde::Serialize, Debug)]
 pub struct MandelSet {
     pub result: String,
 }
 
-pub fn mandel(max_iter: u32) -> MandelSet {
-    let mut result = String::with_capacity(HEIGHT as usize * (WIDTH as usize + 1));
+pub fn mandel(max_iter: u32, height: u32, width: u32) -> MandelSet {
+    let mut result = String::with_capacity(height as usize * (width as usize + 1));
 
-    for y in 0..HEIGHT {
-        for x in 0..WIDTH {
-            let c = (X_MIN + X_STEP * x as f64, Y_MIN + Y_STEP * y as f64);
+    let x_step: f64 = (X_MAX - X_MIN) / width as f64;
+    let y_step: f64 = (Y_MAX - Y_MIN) / height as f64;
+
+    for y in 0..height {
+        for x in 0..width {
+            let c = (X_MIN + x_step * x as f64, Y_MIN + y_step * y as f64);
             let n = mandelbrot_set(c, max_iter);
 
             let pixel = match n {
@@ -42,7 +43,7 @@ pub fn mandel(max_iter: u32) -> MandelSet {
 
     //println!("{}", output);
 
-    //info!("Strlen mandel = {}", result.len());
+    info!("Strlen mandel = {}", result.len());
 
     MandelSet { result }
 }
