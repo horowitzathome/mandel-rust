@@ -43,7 +43,7 @@ pub fn mandel(max_iter: u32, height: u32, width: u32) -> MandelSet {
 
     //println!("{}", output);
 
-    info!("Strlen mandel = {}", result.len());
+    //info!("Strlen mandel = {}", result.len());
 
     MandelSet { result }
 }
