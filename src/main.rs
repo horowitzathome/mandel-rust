@@ -3,6 +3,7 @@ use tracing::*;
 
 mod listen;
 mod mandel;
+mod mandel_new;
 
 pub type Result<T, E = anyhow::Error> = std::result::Result<T, E>;
 
