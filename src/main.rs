@@ -3,6 +3,7 @@ use tracing::*;
 
 mod listen;
 mod mandel;
+mod mandel_memory;
 mod mandel_new;
 
 pub type Result<T, E = anyhow::Error> = std::result::Result<T, E>;
@@ -41,6 +42,7 @@ fn create_router() -> Router {
         // Here the business routes later
         //.route("/mandel_rust/mandel_json/:max_iter", routing::get(listen::mandel_json))
         .route("/mandel_rust/mandel_text/:max_iter/:height/:width", routing::get(listen::mandel_text))
+        .route("/mandel_rust/mandel_text_memory/:max_iter/:height/:width", routing::get(listen::mandel_text_memory))
         //.layer(Extension(reader_deployment))
         .layer(tower_http::trace::TraceLayer::new_for_http())
         // Reminder: routes added *after* TraceLayer are not subject to its logging behavior

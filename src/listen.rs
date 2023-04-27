@@ -20,3 +20,10 @@ pub async fn mandel_text(extract::Path((max_iter, height, width)): extract::Path
     //(StatusCode::OK, Json(mandel))
     mandel_set.result
 }
+
+pub async fn mandel_text_memory(extract::Path((max_iter, height, width)): extract::Path<(u32, u32, u32)>) -> impl IntoResponse {
+    //info!("mandel_text max_iter = {}", { max_iter.0 });
+    let mandel_set = crate::mandel_memory::mandel(max_iter, height, width);
+    //(StatusCode::OK, Json(mandel))
+    mandel_set.result
+}
